@@ -1,16 +1,23 @@
 import { useState, useEffect } from "react";
 
 function App() {
+
+  //chiave
   const apiKey = import.meta.env.VITE_API_KEY;
-  const query = "";
+  
+  // query
+  const [query, setQuery] = useState("");
+
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
 
   //api
   const [dataApi, setDataApi] = useState(null);
+
+
   // valore dell'imput
   const [search, setSearch] = useState("");
 
-  const [filterMovie, setFilterMovie] = useState([]);
+  const [filterMovies, setFilterMovies] = useState([]);
 
   useEffect(() => {
     fetch(url)
@@ -21,10 +28,26 @@ function App() {
       });
   }, []);
 
+
+
+  //quando scrivo nell'input ciò che scrivo diventa il suo valore
   const handleValue = (e) => {
     const searchT = e.target.value;
     setSearch(searchT);
     console.log(searchT);
+  };
+
+  // const [filterMovie, setFilterMovie] = useState([]);
+  const filterMoviesSearch = (searchT) => {
+    const filtered = dataApi?.results?.filter((movie) =>
+      movie.original_title.toLowerCase().includes(searchT.toLowerCase())
+    );
+    setFilterMovies(filtered);
+  };
+
+  // al clik del bottone deve essere mandata la richiesta
+  const handleSubmit = (e) => {
+    e.preventDefault();
   };
 
   return (
@@ -32,11 +55,11 @@ function App() {
       <div>
         <input
           type="text"
-          value={search}
+          value={query}
           onChange={handleValue}
           placeholder="cerca il tuo film"
         />
-        <button>Cerca</button>
+        <button onClick={}>Cerca</button>
       </div>
       <div>
         <ul>
