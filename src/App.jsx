@@ -2,12 +2,15 @@ import { useState, useEffect } from "react";
 
 function App() {
   const apiKey = import.meta.env.VITE_API_KEY;
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}`;
+  const query = "";
+  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
 
   //api
   const [dataApi, setDataApi] = useState(null);
   // valore dell'imput
   const [search, setSearch] = useState("");
+
+  const [filterMovie, setFilterMovie] = useState([]);
 
   useEffect(() => {
     fetch(url)
@@ -37,10 +40,18 @@ function App() {
       </div>
       <div>
         <ul>
-          <li>Titolo</li>
-          <li>Titolo originale</li>
-          <li>Lingua</li>
-          <li>Voto</li>
+          {dataApi?.results?.map(
+            ({ id, original_title, vote_average, original_language }) => {
+              return (
+                <li key={id}>
+                  <div>Titolo: {original_title}</div>
+                  <div>Titolo originale: {original_title}</div>
+                  <div>Lingua: {original_language}</div>
+                  <div>Voto: {vote_average}</div>
+                </li>
+              );
+            }
+          )}
         </ul>
       </div>
     </>
