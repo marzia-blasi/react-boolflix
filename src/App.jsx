@@ -10,12 +10,17 @@ function App() {
   const [query, setQuery] = useState("");
 
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+  const urlTv = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}`;
 
   // valore dell'imput
   const [search, setSearch] = useState("");
 
-  //api
+  //api movie
   const [dataApi, setDataApi] = useState(null);
+
+  // api tv
+
+  const [dataApiTv, setDataApiTv] = useState(null);
 
   //quando scrivo nell'input ciò che scrivo diventa il suo valore
   const handleValue = (e) => {
@@ -29,6 +34,18 @@ function App() {
     setQuery(search);
   };
 
+  // Movies
+  useEffect(() => {
+    if (!query) return;
+    fetch(urlTv)
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setDataApi(data);
+      });
+  }, [query]);
+
+  // serie TV
   useEffect(() => {
     if (!query) return;
     fetch(url)
@@ -46,7 +63,7 @@ function App() {
     );
     setFilterMovies(filtered);
   };
-
+  // alcune nazioni non hanno il giusto codice
   const langToCountry = {
     en: "gb",
     it: "it",
@@ -71,7 +88,41 @@ function App() {
         />
         <button onClick={handleSubmit}>Cerca</button>
       </div>
-      <div>
+      <div className="movie">
+        <ul>
+          {dataApi?.results?.map(
+            ({ id, original_title, vote_average, original_language }) => {
+              return (
+                <li key={id}>
+                  <div>Titolo: {original_title}</div>
+                  <div>Titolo originale: {original_title}</div>
+                  <div>
+                    <span
+                      className={`fi fi-${langToCountry[original_language]}`}
+                      style={{
+                        width: "32px",
+                        height: "24px",
+                        display: "inline-block",
+                        marginRight: "8px",
+                      }}
+                    ></span>
+                    <div>
+                      <img
+                        src={`https://flagcdn.com/24x18/${langToCountry[original_language]}.png`}
+                        alt={original_language}
+                        style={{ marginRight: "8px" }}
+                      />
+                    </div>
+                    Lingua: {original_language}
+                  </div>
+                  <div>Voto: {vote_average}</div>
+                </li>
+              );
+            }
+          )}
+        </ul>
+      </div>
+      <div className="tv">
         <ul>
           {dataApi?.results?.map(
             ({ id, original_title, vote_average, original_language }) => {
