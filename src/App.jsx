@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import "country-flag-icons/react/3x2";
+import "../public/country-flag-icons";
 
 function App() {
   //chiave
@@ -45,6 +47,19 @@ function App() {
     setFilterMovies(filtered);
   };
 
+  const langToCountry = {
+    en: "gb",
+    it: "it",
+    fr: "fr",
+    de: "de",
+    es: "es",
+    ja: "jp",
+    ko: "kr",
+    zh: "cn",
+    ru: "ru",
+    hi: "in",
+  };
+
   return (
     <>
       <div>
@@ -64,7 +79,25 @@ function App() {
                 <li key={id}>
                   <div>Titolo: {original_title}</div>
                   <div>Titolo originale: {original_title}</div>
-                  <div>Lingua: {original_language}</div>
+                  <div>
+                    <span
+                      className={`fi fi-${langToCountry[original_language]}`}
+                      style={{
+                        width: "32px",
+                        height: "24px",
+                        display: "inline-block",
+                        marginRight: "8px",
+                      }}
+                    ></span>
+                    <div>
+                      <img
+                        src={`https://flagcdn.com/24x18/${langToCountry[original_language]}.png`}
+                        alt={original_language}
+                        style={{ marginRight: "8px" }}
+                      />
+                    </div>
+                    Lingua: {original_language}
+                  </div>
                   <div>Voto: {vote_average}</div>
                 </li>
               );
