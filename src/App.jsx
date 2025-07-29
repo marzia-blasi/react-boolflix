@@ -37,7 +37,7 @@ function App() {
   // Movies
   useEffect(() => {
     if (!query) return;
-    fetch(urlTv)
+    fetch(url)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -48,11 +48,11 @@ function App() {
   // serie TV
   useEffect(() => {
     if (!query) return;
-    fetch(url)
+    fetch(urlTv)
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
-        setDataApi(data);
+        setDataApiTv(data);
       });
   }, [query]);
 
@@ -89,6 +89,7 @@ function App() {
         <button onClick={handleSubmit}>Cerca</button>
       </div>
       <div className="movie">
+        <h2>Movie</h2>
         <ul>
           {dataApi?.results?.map(
             ({ id, original_title, vote_average, original_language }) => {
@@ -123,13 +124,14 @@ function App() {
         </ul>
       </div>
       <div className="tv">
+        <h2>TV Show</h2>
         <ul>
-          {dataApi?.results?.map(
-            ({ id, original_title, vote_average, original_language }) => {
+          {dataApiTv?.results?.map(
+            ({ id, original_name, name, vote_average, original_language }) => {
               return (
                 <li key={id}>
-                  <div>Titolo: {original_title}</div>
-                  <div>Titolo originale: {original_title}</div>
+                  <div>Titolo: {name}</div>
+                  <div>Titolo originale: {original_name}</div>
                   <div>
                     <span
                       className={`fi fi-${langToCountry[original_language]}`}
