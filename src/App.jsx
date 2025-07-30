@@ -47,6 +47,12 @@ function App() {
       });
   }, [query]);
 
+  const [showCard, setShowCard] = useState(false);
+
+  // function handleMouseEnter() {
+  //   console.log("Mouse sopra la card");
+  // }
+
   return (
     <>
       <Header query={query} setQuery={setQuery} />
@@ -63,39 +69,51 @@ function App() {
                 backdrop_path,
               }) => {
                 return (
-                  <li key={id}>
+                  <li
+                    key={id}
+                    onMouseEnter={() => {
+                      setShowCard(true);
+                    }}
+                    onMouseLeave={() => {
+                      setShowCard(false);
+                    }}
+                  >
                     <div>
                       <img
                         src={`https://image.tmdb.org/t/p/w342/${backdrop_path}`}
                         alt={original_title}
                       />
                     </div>
-                    <div>Titolo: {original_title}</div>
-                    <div>Titolo originale: {original_title}</div>
-                    <div>
-                      <span
-                        className={`fi fi-${langToCountry[original_language]}`}
-                        style={{
-                          width: "32px",
-                          height: "24px",
-                          display: "inline-block",
-                          marginRight: "8px",
-                        }}
-                      ></span>
-                      <div>
-                        <img
-                          src={`https://flagcdn.com/24x18/${langToCountry[original_language]}.png`}
-                          alt={original_language}
-                          style={{ marginRight: "8px" }}
-                        />
-                      </div>
-                      Lingua: {original_language}
-                    </div>
-                    <div>Voto: {vote_average}</div>
+                    {showCard && (
+                      <div className="">
+                        <div>Titolo: {original_title}</div>
+                        <div>Titolo originale: {original_title}</div>
+                        <div>
+                          <span
+                            className={`fi fi-${langToCountry[original_language]}`}
+                            style={{
+                              width: "32px",
+                              height: "24px",
+                              display: "inline-block",
+                              marginRight: "8px",
+                            }}
+                          ></span>
+                          <div>
+                            <img
+                              src={`https://flagcdn.com/24x18/${langToCountry[original_language]}.png`}
+                              alt={original_language}
+                              style={{ marginRight: "8px" }}
+                            />
+                          </div>
+                          Lingua: {original_language}
+                        </div>
+                        <div>Voto: {vote_average}</div>
 
-                    <div>
-                      <LittleStar vote={vote_average} />
-                    </div>
+                        <div>
+                          <LittleStar vote={vote_average} />
+                        </div>
+                      </div>
+                    )}
                   </li>
                 );
               }

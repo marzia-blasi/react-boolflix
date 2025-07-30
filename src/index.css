@@ -25,3 +25,7 @@ header {
     margin: 0px 8%;
   }
 }
+
+.d-none {
+  display: none;
+}
