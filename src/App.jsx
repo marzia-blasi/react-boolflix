@@ -129,6 +129,8 @@ function App() {
                     Lingua: {original_language}
                   </div>
                   <div>Voto: {vote_average}</div>
+                  {Math.ceil(vote_average / 2)}
+                  <div></div>
                 </li>
               );
             }
@@ -139,9 +141,22 @@ function App() {
         <h2>TV Show</h2>
         <ul>
           {dataApiTv?.results?.map(
-            ({ id, original_name, name, vote_average, original_language }) => {
+            ({
+              id,
+              original_name,
+              name,
+              vote_average,
+              original_language,
+              poster_path,
+            }) => {
               return (
                 <li key={id}>
+                  <div>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w342/${poster_path}`}
+                      alt={original_name}
+                    />
+                  </div>
                   <div>Titolo: {name}</div>
                   <div>Titolo originale: {original_name}</div>
                   <div>
@@ -175,3 +190,6 @@ function App() {
 }
 
 export default App;
+
+// <i class="fa-solid fa-star"></i>
+// <i class="fa-regular fa-star"></i>
