@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import "country-flag-icons/react/3x2";
 import "../public/country-flag-icons";
+import LittleStar from "./components/LittleStar";
 
 function App() {
   //chiave
@@ -129,8 +130,10 @@ function App() {
                     Lingua: {original_language}
                   </div>
                   <div>Voto: {vote_average}</div>
-                  {Math.ceil(vote_average / 2)}
-                  <div></div>
+
+                  <div>
+                    <LittleStar vote={vote_average} />
+                  </div>
                 </li>
               );
             }
