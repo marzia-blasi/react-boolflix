@@ -29,3 +29,15 @@ header {
 .d-none {
   display: none;
 }
+
+.cover {
+  object-fit: cover;
+  width: 100%;
+}
+
+.over {
+  overflow-y: auto;
+  padding: 10px;
+  background-color: #000;
+  color: white;
+}

@@ -59,7 +59,7 @@ function App() {
       <div className="container">
         <div className="movie">
           <h2>Movie</h2>
-          <ul>
+          <ul className="row list-unstyled">
             {dataApi?.results?.map(
               ({
                 id,
@@ -71,6 +71,7 @@ function App() {
                 return (
                   <li
                     key={id}
+                    className="col-6 col-md-4 col-lg-3 p-2"
                     onMouseEnter={() => {
                       setShowCard(true);
                     }}
@@ -79,41 +80,34 @@ function App() {
                     }}
                   >
                     <div>
-                      <img
-                        src={`https://image.tmdb.org/t/p/w342/${backdrop_path}`}
-                        alt={original_title}
-                      />
-                    </div>
-                    {showCard && (
-                      <div className="">
-                        <div>Titolo: {original_title}</div>
-                        <div>Titolo originale: {original_title}</div>
-                        <div>
-                          <span
-                            className={`fi fi-${langToCountry[original_language]}`}
-                            style={{
-                              width: "32px",
-                              height: "24px",
-                              display: "inline-block",
-                              marginRight: "8px",
-                            }}
-                          ></span>
+                      {!showCard ? (
+                        <img
+                          src={`https://image.tmdb.org/t/p/w342/${backdrop_path}`}
+                          alt={original_title}
+                          className="cover"
+                        />
+                      ) : (
+                        <div className="over">
+                          <div>Titolo: {original_title}</div>
+                          <div>Titolo originale: {original_title}</div>
                           <div>
-                            <img
-                              src={`https://flagcdn.com/24x18/${langToCountry[original_language]}.png`}
-                              alt={original_language}
-                              style={{ marginRight: "8px" }}
-                            />
+                            <div>
+                              <img
+                                src={`https://flagcdn.com/24x18/${langToCountry[original_language]}.png`}
+                                alt={original_language}
+                                style={{ marginRight: "8px" }}
+                              />
+                            </div>
+                            Lingua: {original_language}
                           </div>
-                          Lingua: {original_language}
-                        </div>
-                        <div>Voto: {vote_average}</div>
+                          <div>Voto: {vote_average}</div>
 
-                        <div>
-                          <LittleStar vote={vote_average} />
+                          <div>
+                            <LittleStar vote={vote_average} />
+                          </div>
                         </div>
-                      </div>
-                    )}
+                      )}
+                    </div>
                   </li>
                 );
               }
