@@ -15,3 +15,13 @@ body {
 .tv {
   border-style: dotted;
 }
+
+header {
+  background-color: rgb(31, 30, 30);
+
+  .navbar {
+    justify-content: space-between;
+    align-items: center;
+    margin: 0px 8%;
+  }
+}

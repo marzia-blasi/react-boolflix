@@ -19,17 +19,26 @@ export default function Header({ query, setQuery }) {
   return (
     <>
       <header>
-        <div>
-          <img src="../public/boolflix_logo.png" alt="boolflix_logo" />
-        </div>
-        <div>
-          <input
-            type="text"
-            value={search}
-            onChange={handleValue}
-            placeholder="cerca il tuo film"
-          />
-          <button onClick={handleSubmit}>Cerca</button>
+        <div className="d-flex navbar">
+          <div>
+            <img src="../public/boolflix_logo.png" alt="boolflix_logo" />
+          </div>
+          <div className="d-flex">
+            <input
+              className="form-control me-2"
+              type="search"
+              value={search}
+              onChange={handleValue}
+              placeholder="cerca il tuo film"
+            />
+            <button
+              className="btn btn-outline-danger"
+              type="button"
+              onClick={handleSubmit}
+            >
+              Cerca
+            </button>
+          </div>
         </div>
       </header>
     </>

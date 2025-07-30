@@ -1,0 +1,43 @@
+const langToCountry = {
+  en: "gb", // inglese (Regno Unito)
+  it: "it", // italiano
+  fr: "fr", // francese
+  de: "de", // tedesco
+  es: "es", // spagnolo
+  ja: "jp", // giapponese
+  ko: "kr", // coreano
+  zh: "cn", // cinese
+  ru: "ru", // russo
+  hi: "in", // hindi (India)
+
+  pt: "pt", // portoghese (Portogallo)
+  nl: "nl", // olandese (Paesi Bassi)
+  pl: "pl", // polacco (Polonia)
+  sv: "se", // svedese (Svezia)
+  fi: "fi", // finlandese
+  da: "dk", // danese (Danimarca)
+  no: "no", // norvegese
+  tr: "tr", // turco
+  cs: "cz", // ceco (Repubblica Ceca)
+  el: "gr", // greco (Grecia)
+  he: "il", // ebraico (Israele)
+  th: "th", // tailandese
+  vi: "vn", // vietnamita
+  ro: "ro", // rumeno (Romania)
+  hu: "hu", // ungherese (Ungheria)
+  uk: "ua", // ucraino (Ucraina)
+  id: "id", // indonesiano
+  ms: "my", // malese (Malaysia)
+  fa: "ir", // persiano (Iran)
+  ar: "sa", // arabo (Arabia Saudita)
+  bg: "bg", // bulgaro (Bulgaria)
+  hr: "hr", // croato (Croazia)
+  sk: "sk", // slovacco (Slovacchia)
+  sl: "si", // sloveno (Slovenia)
+  et: "ee", // estone (Estonia)
+  lt: "lt", // lituano (Lituania)
+  lv: "lv", // lettone (Lettonia)
+  sr: "rs", // serbo (Serbia)
+};
+
+export default langToCountry;
