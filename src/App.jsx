@@ -1,7 +1,10 @@
 import { useState, useEffect } from "react";
 import "country-flag-icons/react/3x2";
 import "../public/country-flag-icons";
+
+// Componenti
 import LittleStar from "./components/LittleStar";
+import Header from "./components/Header";
 
 function App() {
   //chiave
@@ -13,27 +16,12 @@ function App() {
   const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
   const urlTv = `https://api.themoviedb.org/3/search/tv?api_key=${apiKey}&query=${query}`;
 
-  // valore dell'imput
-  const [search, setSearch] = useState("");
-
   //api movie
   const [dataApi, setDataApi] = useState(null);
 
   // api tv
 
   const [dataApiTv, setDataApiTv] = useState(null);
-
-  //quando scrivo nell'input ciò che scrivo diventa il suo valore
-  const handleValue = (e) => {
-    setSearch(e.target.value);
-    console.log(setSearch);
-  };
-
-  // al clik del bottone deve essere mandata la richiesta
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setQuery(search);
-  };
 
   // Movies
   useEffect(() => {
@@ -57,13 +45,6 @@ function App() {
       });
   }, [query]);
 
-  // const [filterMovie, setFilterMovie] = useState([]);
-  const filterMoviesSearch = (searchT) => {
-    const filtered = dataApi?.results?.filter((movie) =>
-      movie.original_title.toLowerCase().includes(searchT.toLowerCase())
-    );
-    setFilterMovies(filtered);
-  };
   // alcune nazioni non hanno il giusto codice
   const langToCountry = {
     en: "gb",
@@ -80,15 +61,8 @@ function App() {
 
   return (
     <>
-      <div>
-        <input
-          type="text"
-          value={search}
-          onChange={handleValue}
-          placeholder="cerca il tuo film"
-        />
-        <button onClick={handleSubmit}>Cerca</button>
-      </div>
+      <Header query={query} setQuery={setQuery} />
+
       <div className="movie">
         <h2>Movie</h2>
         <ul>
