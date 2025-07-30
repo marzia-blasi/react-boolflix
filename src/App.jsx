@@ -92,9 +92,21 @@ function App() {
         <h2>Movie</h2>
         <ul>
           {dataApi?.results?.map(
-            ({ id, original_title, vote_average, original_language }) => {
+            ({
+              id,
+              original_title,
+              vote_average,
+              original_language,
+              backdrop_path,
+            }) => {
               return (
                 <li key={id}>
+                  <div>
+                    <img
+                      src={`https://image.tmdb.org/t/p/w342/${backdrop_path}`}
+                      alt={original_title}
+                    />
+                  </div>
                   <div>Titolo: {original_title}</div>
                   <div>Titolo originale: {original_title}</div>
                   <div>
